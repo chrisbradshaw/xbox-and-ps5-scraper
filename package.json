@@ -1,0 +1,20 @@
+{
+  "name": "console-scraping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Chris Bradshaw",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.5",
+    "log-timestamp": "^0.3.0",
+    "node-cron": "^2.0.3",
+    "open": "^7.3.0",
+    "play-sound": "^1.1.3"
+  }
+}
