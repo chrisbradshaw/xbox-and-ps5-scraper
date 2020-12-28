@@ -23,6 +23,10 @@ npm i
 node app.js
 ```
 
+## Article Explaining Logic
+
+- Read an article explaining the logic here: [LinkedIn Post about Logic](https://www.linkedin.com/pulse/how-use-magic-nodejs-secure-playstation-5-xbox-series-bradshaw/?trackingId=AHPUxligQg%2BjB8SdjMrW2A%3D%3D)
+
 ## Author
 
 Chris Bradshaw – [@\_chrisbradshaw](https://twitter.com/_chrisbradshaw) – bradshaw.chris@gmail.com
