@@ -41,8 +41,8 @@ const fetchDataFn = async (consoleString) => {
 // check scrapedData for any available consoles
 const checkForStockAndAlert = (data, i) => {
   const consoleData = {
-    0: { name: "Xbox Series X", sound: "./xbox-in-stock.mp3" },
-    1: { name: "Playstation 5", sound: "./playstation-in-stock.mp3" },
+    0: { name: "Xbox Series X", sound: "./mp3s/xbox-in-stock.mp3" },
+    1: { name: "Playstation 5", sound: "./mp3s/playstation-in-stock.mp3" },
   };
 
   const currentConsole = consoleData[i];
