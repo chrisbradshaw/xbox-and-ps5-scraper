@@ -10,8 +10,8 @@
   "author": "Chris Bradshaw",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
-    "cheerio": "^1.0.0-rc.5",
+    "axios": "^0.21.4",
+    "cheerio": "^1.0.0-rc.10",
     "log-timestamp": "^0.3.0",
     "node-cron": "^2.0.3",
     "open": "^7.3.0",
