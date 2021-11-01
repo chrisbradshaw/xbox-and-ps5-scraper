@@ -8,6 +8,7 @@ Scrapes stock checker for Xbox Series X and PS5 inventory and sounds alarm when 
 - [Cheerio](https://www.npmjs.com/package/cheerio) - Tiny, fast, and elegant implementation of core jQuery designed specifically for the server
 - [Player](https://www.npmjs.com/package/player) - A command line player, supports play mp3 both from url and local stream.
 - [Open](https://www.npmjs.com/package/open) - Open stuff like URLs, files, executables. Cross-platform.
+- [SendGrid/mail](https://www.npmjs.com/package/@sendgrid/mail) - This is a dedicated service for interaction with the mail endpoint of the SendGrid v3 API.
 
 ## Highlights
 
