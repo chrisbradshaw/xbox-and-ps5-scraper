@@ -1,14 +1,24 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 const logtimestamp = require("log-timestamp");
-const player = require("play-sound")((opts = {}));
+const player = require("play-sound")({player: "D:\\projects\\mplayer\\mplayer.exe"});
 const open = require("open");
+const sgMail = require('@sendgrid/mail');
+
+require('dotenv').config();
 
 // aggregate scraped data into an array of js objects
 const scrapedData = [];
 
 // add colors for console.log downstairs 👨‍🎨
-const colors = { red: "\x1b[31m", green: "\x1b[32m" };
+const colors = { white: "\x1b[37m", red: "\x1b[31m", green: "\x1b[32m" };
+const { SENDGRID_API_KEY } = process.env;
+const { EMAIL_FROM } = process.env;
+const { EMAIL_TO } = process.env;
+
+// console.log(colors.white, `SendGrid key: ${SENDGRID_API_KEY}`);
+
+sgMail.setApiKey(SENDGRID_API_KEY);
 
 // fetch data for given url
 const fetchData = async (url) => {
@@ -48,6 +58,7 @@ const checkForStockAndAlert = (data, i) => {
   const currentConsole = consoleData[i];
 
   const potentials = data.filter(
+    // (v) => v.status !== "Out of Stock" && v.status !== "Not Tracking" // include Ebay for positive test
     (v) => v.status !== "Out of Stock" && v.status !== "Not Tracking" && !v.name.startsWith("Ebay") // ain't nobody got time for Ebay
   );
 
@@ -57,12 +68,34 @@ const checkForStockAndAlert = (data, i) => {
     // open link of each potential console in default browser
     potentials.forEach((potential) => open(potential.link));
 
+    var htmlLinks = ''; 
+    for (let i = 0; i < potentials.length-1; i++) {
+      htmlLinks += '<li>' + currentConsole.name + ' - ' + potentials[i].name + ' - ' + potentials[i].link + '</li>';
+    }
+
+    const msg = {
+      to: EMAIL_TO, // Change to your recipient
+      from: EMAIL_FROM, // Change to your verified sender
+      subject: 'Sending an update from Stock Checker App',
+      text: 'Testing to see how long this email generation takes.',
+      html: `<strong>Found the following items!</strong><br><ul>${htmlLinks}</ul>`,
+    }
+
     player.play(`${currentConsole.sound}`, function (err) {
       if (err) throw err;
     });
+    sgMail
+      .send(msg)
+      .then(() => {
+        console.log(colors.white, `Test email sent to ${msg.to}.`)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   } else {
     console.log(colors.red, `No ${currentConsole.name} located! :(`);
   }
+  
 };
 
 // Check all console types for stock every 5 minutes, notify if consoles are available
@@ -73,9 +106,9 @@ const checkForStockAndAlert = (data, i) => {
         checkForStockAndAlert(console, i);
       });
 
-      console.log("Process finished, waiting 5 minutes");
+      console.log(colors.white, "Process finished, waiting 5 minutes");
       setTimeout(function () {
-        console.log("Going to restart");
+        console.log(colors.white, "Going to restart");
         schedule();
       }, 1000 * 60 * 5);
     })
