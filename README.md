@@ -8,6 +8,7 @@ Scrapes stock checker for Xbox Series X and PS5 inventory and sounds alarm when 
 - [Cheerio](https://www.npmjs.com/package/cheerio) - Tiny, fast, and elegant implementation of core jQuery designed specifically for the server
 - [Player](https://www.npmjs.com/package/player) - A command line player, supports play mp3 both from url and local stream.
 - [Open](https://www.npmjs.com/package/open) - Open stuff like URLs, files, executables. Cross-platform.
+- [SendGrid/mail](https://www.npmjs.com/package/@sendgrid/mail) - This is a dedicated service for interaction with the mail endpoint of the SendGrid v3 API.
 
 ## Highlights
 
@@ -20,7 +21,20 @@ Scrapes stock checker for Xbox Series X and PS5 inventory and sounds alarm when 
 
 ```sh
 npm i
-node app.js
+npm run-script run
+```
+
+If using SendGrid to send email emails when "stock" is found, you will need to run the following commands to create a .\env file with the corresponding environment variables. Please update the values of each variable before running the shell script. This is step 3 from (https://app.sendgrid.com/guide/integrate/langs/nodejs)
+* SENDGRID_API_KEY
+* EMAIL_TO
+* EMAIL_FROM
+
+```sh
+echo "SENDGRID_API_KEY='YOUR_API_KEY'" > .env
+echo "EMAIL_TO='YOUR_SEND_ADDRESS'" >> .env
+echo "EMAIL_FROM='YOUR_RECEIVE_ADDRESS'" >> .env
+echo ".env" >> .gitignore
+source ./.env
 ```
 
 ## Article Explaining Logic

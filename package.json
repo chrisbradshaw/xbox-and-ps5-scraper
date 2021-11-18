@@ -4,14 +4,17 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "run": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Chris Bradshaw",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
-    "cheerio": "^1.0.0-rc.5",
+    "@sendgrid/mail": "^7.5.0",
+    "axios": "^0.21.4",
+    "cheerio": "^1.0.0-rc.10",
+    "dotenv": "^10.0.0",
     "log-timestamp": "^0.3.0",
     "node-cron": "^2.0.3",
     "open": "^7.3.0",
